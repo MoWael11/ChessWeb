@@ -1,0 +1,556 @@
+:root {
+    --main-color: #7fa650;
+    --main-transition: 0.3s;
+    --color-p: #b7bcbc;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Cairo', sans-serif;
+    background-image: url(../images/background-body.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+.container {
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 986px;
+    }
+}
+@media (min-width: 1199px) {
+    .container {
+        width: 1170px;
+    }
+}
+ul {
+    padding: 0;
+}
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.section .container {
+    display: flex;
+}
+@media (max-width:992px) {
+    .section .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.section .container .content-board {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin: 10px 0;
+    width: fit-content;
+    height: fit-content;
+}
+.section .container .content-board .rapp {
+    display: flex;
+    align-items: flex-start;
+    color: var(--color-p);
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.section .container .content-board .rapp:first-child {
+    margin-bottom: 10px;
+}
+.section  .container .content-board .rapp .info {
+    display: flex;
+    gap: 10px;
+}
+.section .container .content-board .rapp img {
+    width: 40px;
+    height: 40px;
+}
+.section .container .content-board .rapp a {
+    margin: 0;
+    padding: 0;
+    display: block;
+    text-decoration: none;
+    color: var(--color-p);
+    text-transform: capitalize;
+    transition: var(--main-transition);
+}
+.section .container .content-board .rapp .timer {
+    padding: 7px;
+    padding-right: 10px;
+    width: 150px;
+    font-size: 25px;
+    border-radius: 4px;
+    text-align: right;
+    opacity: 0.5;
+}
+@media (max-width:520px) {
+    .section .container .content-board .rapp .timer {
+        width: 125px;
+        font-weight: 600;
+    }
+}
+.section .container .content-board .rapp .timer.opponent {
+    background-color: black;
+    color: white;
+}
+.section .container .content-board .rapp .timer.player {
+    background-color: white;
+    color: black;
+}
+.section .container .content-board .info a:hover {
+    color: white;
+}
+.section .container .content-board .board {
+    width: 650px;
+    height: 650px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    border-radius: 2px;
+    overflow: hidden;
+    counter-reset:board;
+    animation: live-game 30s linear 1 backwards;
+}
+@media (max-width:768px) {
+    .section .container .content-board .board {
+        width: 500px;
+        height: 500px;
+        margin: auto;
+    }
+}
+@media (max-width:520px) {
+    .section .container .content-board .board {
+        width: 350px;
+        height: 350px;
+        margin: auto;
+    }
+}
+.section .container .content-board .board > div {
+    position: relative;
+    border: 2px solid rgb(181 181 197 / 21%);
+}
+.section .container .content-board .board .e2 img {
+    animation: e2 var(--main-transition) linear 1 forwards;
+}
+.section .container .content-board .board .e7 img {
+    animation: e7 var(--main-transition) .5s linear 1 forwards;
+}
+.section .container .content-board .board .f1 img {
+    animation: b-f6 var(--main-transition) 1s linear 1 forwards;
+}
+.section .container .content-board .board .d7 img {
+    animation: d7 var(--main-transition) 1.5s linear 1 forwards;
+}
+.section .container .content-board .board .d1 img {
+    animation: q-d1 1.4s 2s linear 1 forwards;
+}
+.section .container .content-board .board .b8 img {
+    animation: k-b8 var(--main-transition) 2.5s linear 1 forwards;
+}
+.section .container .content-board .board .f7 img {
+    animation: f7 var(--main-transition) 3.2s linear 1 forwards;
+}
+.section .container .content-board .board .e8 img {
+    animation: e8 1s 3.5s linear infinite;
+}
+.section .container .content-board .board .e8 {
+    animation: color-e8 0s 3.4s linear 1 forwards;
+}
+.section .container .content-board .board > div img {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+.section .container .content-board .board .a::before {
+    counter-increment: board;
+    position: absolute;
+    content: counter(board);
+    top: 5px;
+    left: 5px;
+    color: var(--color-p);
+    font-size: 14px;
+    font-weight: bold;
+    font: 20px;
+}
+@media (max-width:768px) {
+    .section .container .content-board .board .a::before  {
+        font-size: 10px;
+        top: 2px;
+        left: 2px;
+    }
+}
+.section .container .content-board .board .a1::after {
+    content: "a"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+.section .container .content-board .board .b1::after {
+    content: "b"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+.section .container .content-board .board .c1::after {
+    content: "c"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+.section .container .content-board .board .d1::after {
+    content: "d"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+.section .container .content-board .board .e1::after {
+    content: "e"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+.section .container .content-board .board .f1::after {
+    content: "f"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+.section .container .content-board .board .g1::after {
+    content: "g"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+.section .container .content-board .board .h1::after {
+    content: "h"; 
+    position: absolute;
+    color: var(--color-p);
+    bottom: 5px;
+    right: 8px;
+}
+@media (max-width:768px) {
+    .section .container .content-board .board div::after  {
+        font-size: 10px;
+        right: 2px;
+        bottom: 2px;
+    }
+}
+.section .container .new-game {
+    width: 100%;
+    margin-left: 40px;
+    margin-top: 75px;
+    height: calc(650px + 50px);
+    background-color: #0b11163b;
+    border-radius: 4px;
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+@media (max-width:992px) {
+    .section .container .new-game {
+        margin-left: 0;
+        height: 300px;
+    }
+}
+.section .container .new-game .time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(75 85 102 / 28%);
+    border-radius: 4px;
+    gap: 5px;
+    position: relative;
+    transition: var(--main-transition);
+    cursor: pointer;
+    min-height: 60px;
+}
+.section .container .new-game .time:hover {
+    background-color: #4a566a99;
+}
+.section .container .new-game .time::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f078";
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    color: rgb(132 139 151);
+    font-size: 20px;
+}
+.section .container .new-game .time i {
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 0;
+}
+.section .container .new-game .time p {
+    color: white;
+}
+.section .container .new-game .play {
+    min-height: 60px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    background-color: var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    animation: change-color 5s infinite linear alternate-reverse;
+}
+.pause-animation {
+    animation-play-state: paused !important;
+}
+.open-platforms {
+    display: flex !important;
+}
+.section .container .new-game .platforms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d111859;
+    display: none;
+    transition: var(--main-transition);
+    border-radius: 4px;
+}
+.section .container .new-game .platforms p {
+    color: var(--color-p);
+    text-align: center;
+}
+.section .container .new-game .platforms ul {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.section .container .new-game .platforms li {
+    background-color: #313131;
+    border-radius: 4px;
+    transition: var(--main-transition);
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.section .container .new-game .platforms li::before {
+    content: "";
+    border: 8px solid;
+    position: absolute;
+    bottom: -8px;
+    right: 50%;
+    transform: translateX(50%);
+    border-color: transparent transparent black;
+    display: none;
+}
+.section .container .new-game .platforms li::after {
+    content: attr(name);
+    position: absolute;
+    color: white;
+    padding: 5px 10px;
+    background-color: black;
+    border-radius: 4px;
+    font-size: 14px;
+    bottom: -32px;
+    display: none;
+}
+.section .container .new-game .platforms li:hover:before,
+.section .container .new-game .platforms li:hover::after {
+    display: block;
+}
+.section .container .new-game .platforms li:first-child:hover {
+    background-color: #4f6c2bba;
+    box-shadow: 0px 0px 5px 0px #4f6c2bba;
+}
+.section .container .new-game .platforms li:nth-child(2):hover {
+    background-color: #223b96be;
+    box-shadow: 0px 0px 5px 0px #223b96be;
+}
+.section .container .new-game .platforms li:last-child:hover {
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px white;
+}
+.section .container .new-game .platforms a {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.section .container .new-game .platforms a img {
+    width: 40px;
+}
+.section .container .new-game .game ~ a{
+    min-height: 60px;
+    border-radius: 4px;
+    background-color: var(--main-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: capitalize;
+    transition: var(--main-transition);
+}
+.section .container .new-game .game ~ a:hover {
+    background-color: #95bb4a;
+    box-shadow: 0px 0px 5px 2px #95bb4a;
+}
+@keyframes e2 {
+    100% {
+        transform: translateY(-163px);
+    }
+}
+@keyframes e7 {
+    100% {
+        transform: translateY(163px);
+    }
+}
+@keyframes b-f6 {
+    100% {
+        transform: translate(-243px, -243px);
+    }
+}
+@keyframes d7 {
+    100% {
+        transform: translateY(81px);
+    }
+}
+@keyframes q-d1 {
+    15%, 85% {
+        transform: translate(162px, -162px);
+    }
+    100% {
+        transform: translate(162px, -486px);
+    }
+}
+@keyframes k-b8 {
+    100% {
+        transform: translate(81px, 162px);
+    }
+}
+@keyframes f7 {
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes e8 {
+    0%, 20% {
+        transform: translateX(5px);
+    }
+    10%, 30% {
+        transform: translateX(-5px);
+    }
+    40% {
+        transform: translateX(0);
+    }
+}
+@keyframes color-e8 {
+    100% {
+        background-color: #d1655b;
+    }
+}
+@media (max-width:768px) {
+    @keyframes e2 {
+        100% {
+            transform: translateY(-125px);
+        }
+    }
+    @keyframes e7 {
+        100% {
+            transform: translateY(125px);
+        }
+    }
+    @keyframes b-f6 {
+        100% {
+            transform: translate(-188px, -188px);
+        }
+    }
+    @keyframes d7 {
+        100% {
+            transform: translateY(63px);
+        }
+    }
+    @keyframes q-d1 {
+        15%, 85% {
+            transform: translate(125px, -125px);
+        }
+        100% {
+            transform: translate(125px, -375px);
+        }
+    }
+    @keyframes k-b8 {
+        100% {
+            transform: translate(63px, 125px);
+        }
+    }
+}
+@media (max-width:520px) {
+    @keyframes e2 {
+        100% {
+            transform: translateY(-88px);
+        }
+    }
+    @keyframes e7 {
+        100% {
+            transform: translateY(88px);
+        }
+    }
+    @keyframes b-f6 {
+        100% {
+            transform: translate(-132px, -132px);
+        }
+    }
+    @keyframes d7 {
+        100% {
+            transform: translateY(44px);
+        }
+    }
+    @keyframes q-d1 {
+        15%, 85% {
+            transform: translate(88px, -88px);
+        }
+        100% {
+            transform: translate(88px, -262px);
+        }
+    }
+    @keyframes k-b8 {
+        100% {
+            transform: translate(44px, 88px);
+        }
+    }
+}
+@keyframes change-color {
+    0%, 100% {
+        background-color: var(--main-color);
+    }
+    50% {
+        background-color: #9ee14de6;
+        box-shadow: 0px 0px 5px 2px #9ee14de6;
+    }
+}

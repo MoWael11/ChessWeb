@@ -1,0 +1,140 @@
+:root {
+    --main-color: #7fa650;
+    --main-transition: 0.3s;
+    --color-p: #b7bcbc;
+    --bold-color: #d3d3d3;
+}
+@media (max-width:768px) {
+    p {
+        text-align: center;
+    }
+}
+@media (max-width:768px) {
+    h2 {
+        text-align: center;
+    }
+}
+::selection {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.467);
+}
+.info .container {
+    background-color: #0b11163b;
+    border-radius: 4px;
+    padding: 20px;
+}
+.info .container i {
+    font-weight: bold;
+}
+.info .container p {
+    color: var(--color-p);
+    line-height: 2;
+    font-size: 15px;
+}
+.info .container h2 {
+    color: white;
+    text-transform: uppercase;
+}
+.padding {
+    padding:  50px 0;
+}
+.info .container span{
+    font-weight: bold;
+    color: var(--bold-color);
+}
+.info .container span.background {
+    background-color: #0b111685;
+}
+.info .container .opening {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+@media (max-width:768px) {
+    .info .container .opening {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+.info .container .board-geometry > p {
+    font-size: 18px;
+}
+.info .container .board-geometry ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
+    gap: 20px;
+}
+.info .container .board-geometry ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0b111678;
+    padding: 10px;
+    padding-bottom: 30px;
+    border-radius: 4px;
+}
+.info .container .board-geometry ul li p {
+    min-height: 80px;
+    text-align: center;
+}
+.info .container .how-to-play ul.first-ul li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    padding: 10px;
+    position: relative;
+}
+@media (max-width:768px) {
+    .info .container .how-to-play ul.first-ul li {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.info .container .how-to-play ul.first-ul li:not(:last-child):before {
+    content: "";
+    width: calc(100% - 80px);
+    position: absolute;
+    height: 1px;
+    background-color: var(--color-p);
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%);
+}
+.info .container .how-to-play ul.first-ul li img {
+    width: 263px;
+}
+.info .container > a {
+    min-height: 60px;
+    border-radius: 4px;
+    background-color: var(--main-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: capitalize;
+    transition: var(--main-transition);
+}
+.info .container > a:hover {
+    background-color: #95bb4a;
+    box-shadow: 0px 0px 5px 2px #95bb4a;
+}
+.info .container .how-to-play ul.second-ul {
+    counter-reset: li;
+}
+.info .container .how-to-play ul.second-ul li {
+    position: relative;
+    padding-left: 20px;
+}
+.info .container .how-to-play ul.second-ul li::before{
+    counter-increment: li;
+    content: counter(li) ")";
+    position: absolute;
+    top: 5px;
+    left: 0;
+    color: var(--color-p);
+}
